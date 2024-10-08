@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    networks:
+      - flower-network
+    volumes:
+      - ./backend/database.sqlite:/app/database.sqlite
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    networks:
+      - flower-network
+
+networks:
+  flower-network:
+    driver: bridge
